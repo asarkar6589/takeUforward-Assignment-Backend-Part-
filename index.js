@@ -2,10 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const BannerRouter = require('./routes/banner');
-// const mySqlPool = require('./config/dbConnection');
 const mysql = require('mysql2/promise.js');
 
-// deploy this, delete the file in the config folder and submit it.
 
 dotenv.config({
     path: ".env",
@@ -15,7 +13,8 @@ const mySqlPool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 const PORT = process.env.PORT;
@@ -41,4 +40,8 @@ mySqlPool.query('select 1').then(() => {
     })
 }).catch(err => {
     console.log(err);
+    console.error("Failed to establish database connection:");
+    console.error(`Error Code: ${err.code}`);
+    console.error(`Error Message: ${err.message}`);
+    console.error(`Error Stack: ${err.stack}`);
 })
