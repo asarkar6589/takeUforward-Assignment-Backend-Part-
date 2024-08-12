@@ -45,3 +45,5 @@ mySqlPool.query('select 1').then(() => {
     console.error(`Error Message: ${err.message}`);
     console.error(`Error Stack: ${err.stack}`);
 })
+
+module.exports = mySqlPool;

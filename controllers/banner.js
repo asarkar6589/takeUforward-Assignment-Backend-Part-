@@ -1,4 +1,4 @@
-const mySqlPool = require("../config/dbConnection")
+const mySqlPool = require("../index");
 
 exports.getAllDetails = async (req, res) => {
     try {
